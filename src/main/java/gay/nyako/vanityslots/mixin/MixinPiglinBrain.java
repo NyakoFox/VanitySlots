@@ -3,10 +3,12 @@ package gay.nyako.vanityslots.mixin;
 import dev.emi.trinkets.api.SlotType;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
+import gay.nyako.vanityslots.VanitySlots;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Pair;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -20,6 +22,10 @@ public class MixinPiglinBrain {
 
     @Redirect(method = "wearsGoldArmor", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getArmorItems()Ljava/lang/Iterable;"))
     private static Iterable<ItemStack> vanityslots$wearsGoldArmor(LivingEntity entity) {
+        if (!VanitySlots.CONFIG.mobsReactToVanity) {
+            return entity.getArmorItems();
+        }
+
         List<ItemStack> visibleArmor = new ArrayList<>((List<ItemStack>) entity.getArmorItems());
 
         if (entity instanceof PlayerEntity) {

@@ -18,7 +18,9 @@ public class MixinEndermanEntity {
 
     @Redirect(method = "isPlayerStaring", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/collection/DefaultedList;get(I)Ljava/lang/Object;"))
     public Object vanityslots$isPlayerStaring(DefaultedList<ItemStack> instance, int index, PlayerEntity player) {
-
+        if (!VanitySlots.CONFIG.mobsReactToVanity) {
+            return instance.get(index);
+        }
         ItemStack vanity = VanitySlots.getVanityStack(player, EquipmentSlot.HEAD);
         if (!vanity.isEmpty()) {
             return vanity;

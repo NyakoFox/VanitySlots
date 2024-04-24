@@ -8,6 +8,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Pair;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -19,6 +20,10 @@ public class MixinGetAttackDistanceScalingFactor {
 
     @Redirect(method = "getAttackDistanceScalingFactor", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getArmorVisibility()F"))
     private float injected(LivingEntity entity) {
+        if (!VanitySlots.CONFIG.mobsReactToVanity) {
+            return entity.getArmorVisibility();
+        }
+
         Iterable<ItemStack> iterable = entity.getArmorItems();
 
         List<ItemStack> visible_armor = new ArrayList<>();
@@ -68,6 +73,10 @@ public class MixinGetAttackDistanceScalingFactor {
 
     @Redirect(method = "getAttackDistanceScalingFactor", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getEquippedStack(Lnet/minecraft/entity/EquipmentSlot;)Lnet/minecraft/item/ItemStack;"))
     private ItemStack injected(LivingEntity instance, EquipmentSlot equipmentSlot) {
+        if (!VanitySlots.CONFIG.mobsReactToVanity) {
+            return instance.getEquippedStack(equipmentSlot);
+        }
+
         if (instance instanceof PlayerEntity) {
             ItemStack vanity = VanitySlots.getVanityStack(instance, equipmentSlot);
             if (!vanity.isEmpty()) {

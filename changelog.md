@@ -1,1 +1,1 @@
-This update removes the `wearable_on_head` tag in favor of allowing all Equipment items (thanks AstralOrdana for #16!) and updates the mod to 1.20.2.
+Add config option for whether mobs react to displayed armor or not (OFF by default, despite the default being ON in the previous versions)

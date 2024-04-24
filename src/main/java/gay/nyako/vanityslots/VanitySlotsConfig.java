@@ -13,4 +13,7 @@ public class VanitySlotsConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip
     public boolean disallowBinding = true;
+
+    @ConfigEntry.Gui.Tooltip
+    public boolean mobsReactToVanity = false;
 }
