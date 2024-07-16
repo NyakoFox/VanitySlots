@@ -20,7 +20,7 @@ import java.util.Optional;
 @Mixin(PiglinBrain.class)
 public class MixinPiglinBrain {
 
-    @Redirect(method = "wearsGoldArmor", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getAllArmorItems()Ljava/lang/Iterable;"))
+    @Redirect(method = "wearsGoldArmor", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getArmorItems()Ljava/lang/Iterable;"))
     private static Iterable<ItemStack> vanityslots$wearsGoldArmor(LivingEntity entity) {
         if (!VanitySlots.CONFIG.mobsReactToVanity) {
             return entity.getArmorItems();

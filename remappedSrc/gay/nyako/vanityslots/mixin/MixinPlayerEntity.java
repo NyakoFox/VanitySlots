@@ -28,7 +28,7 @@ public abstract class MixinPlayerEntity extends LivingEntity {
 
     @Inject(method = "getEquippedStack(Lnet/minecraft/entity/EquipmentSlot;)Lnet/minecraft/item/ItemStack;", at = @At("HEAD"), cancellable = true)
     private void injected(EquipmentSlot slot, CallbackInfoReturnable<ItemStack> cir) {
-        if (slot.getType() == EquipmentSlot.Type.HUMANOID_ARMOR) {
+        if (slot.getType() == EquipmentSlot.Type.ARMOR) {
             if (VanitySlots.USE_VANITY) {
                 ItemStack vanity = VanitySlots.getVanityStack(this, slot);
                 if (!vanity.isEmpty()) {

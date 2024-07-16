@@ -24,7 +24,6 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.util.TriState;
-import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -34,6 +33,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 import java.util.Optional;
 
 public class VanitySlots implements ModInitializer {
@@ -106,12 +106,12 @@ public class VanitySlots implements ModInitializer {
 	}
 
 	public void registerPredicate(String identifier, EquipmentSlot slot) {
-		TrinketsApi.registerTrinketPredicate(Identifier.of("vanityslots", identifier), (stack, ref, entity) -> {
+		TrinketsApi.registerTrinketPredicate(new Identifier("vanityslots", identifier), (stack, ref, entity) -> {
 			if (isInBlacklist(stack.getItem())) return TriState.FALSE;
 			Equipment equipment = Equipment.fromStack(stack);
 			if (equipment != null) {
 				if (equipment.getSlotType() == slot) {
-					if (CONFIG.disallowBinding && EnchantmentHelper.hasAnyEnchantmentsWith(stack, EnchantmentEffectComponentTypes.PREVENT_ARMOR_CHANGE)) {
+					if (CONFIG.disallowBinding && EnchantmentHelper.hasBindingCurse(stack)) {
 						return TriState.FALSE;
 					}
 					return TriState.TRUE;
@@ -120,7 +120,7 @@ public class VanitySlots implements ModInitializer {
 			return TriState.DEFAULT;
 		});
 
-		TrinketsApi.registerTrinketPredicate(Identifier.of("vanityslots", "quick_" + identifier), (stack, ref, entity) -> {
+		TrinketsApi.registerTrinketPredicate(new Identifier("vanityslots", "quick_" + identifier), (stack, ref, entity) -> {
 			// If the vanilla slot is empty...
 			if (entity.getEquippedStack(slot).isEmpty()) {
 				// We don't want to shift click into our custom one.

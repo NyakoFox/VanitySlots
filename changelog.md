@@ -1,1 +1,1 @@
-Add config option for whether mobs react to displayed armor or not (OFF by default, despite the default being ON in the previous versions)
+Update mod to 1.21
