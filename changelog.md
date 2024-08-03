@@ -1,1 +1,1 @@
-Update mod to 1.21
+Fix familiar armor not rendering properly, and stacking to 64

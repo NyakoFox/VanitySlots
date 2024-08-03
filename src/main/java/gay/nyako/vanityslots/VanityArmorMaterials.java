@@ -24,7 +24,7 @@ public class VanityArmorMaterials {
         map.put(ArmorItem.Type.CHESTPLATE, 3);
         map.put(ArmorItem.Type.HELMET, 1);
         map.put(ArmorItem.Type.BODY, 3);
-    }), 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.LEATHER), List.of(new ArmorMaterial.Layer(Identifier.of("familiar"), "", false), new ArmorMaterial.Layer(Identifier.of("familiar"), "_overlay", false)));
+    }), 15, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.LEATHER), List.of(new ArmorMaterial.Layer(Identifier.of("familiar"), "", false)));
 
     private static RegistryEntry<ArmorMaterial> register(String id, EnumMap<ArmorItem.Type, Integer> defense, int enchantability, RegistryEntry<SoundEvent> equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient, List<ArmorMaterial.Layer> layers) {
         EnumMap<ArmorItem.Type, Integer> enumMap = new EnumMap<ArmorItem.Type, Integer>(ArmorItem.Type.class);

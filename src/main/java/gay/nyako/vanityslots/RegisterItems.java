@@ -7,10 +7,10 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class RegisterItems {
-    public static final Item FAMILIAR_WIG = new ArmorItem(VanityArmorMaterials.FAMILIAR, ArmorItem.Type.HELMET, new Item.Settings());
-    public static final Item FAMILIAR_SHIRT = new ArmorItem(VanityArmorMaterials.FAMILIAR, ArmorItem.Type.CHESTPLATE, new Item.Settings());
-    public static final Item FAMILIAR_PANTS = new ArmorItem(VanityArmorMaterials.FAMILIAR, ArmorItem.Type.LEGGINGS, new Item.Settings());
-    public static final Item FAMILIAR_SNEAKERS = new ArmorItem(VanityArmorMaterials.FAMILIAR, ArmorItem.Type.BOOTS, new Item.Settings());
+    public static final Item FAMILIAR_WIG = new ArmorItem(VanityArmorMaterials.FAMILIAR, ArmorItem.Type.HELMET, new Item.Settings().maxCount(1));
+    public static final Item FAMILIAR_SHIRT = new ArmorItem(VanityArmorMaterials.FAMILIAR, ArmorItem.Type.CHESTPLATE, new Item.Settings().maxCount(1));
+    public static final Item FAMILIAR_PANTS = new ArmorItem(VanityArmorMaterials.FAMILIAR, ArmorItem.Type.LEGGINGS, new Item.Settings().maxCount(1));
+    public static final Item FAMILIAR_SNEAKERS = new ArmorItem(VanityArmorMaterials.FAMILIAR, ArmorItem.Type.BOOTS, new Item.Settings().maxCount(1));
 
     public static void register() {
         Registry.register(Registries.ITEM, Identifier.of("vanityslots", "familiar_wig"), FAMILIAR_WIG);
