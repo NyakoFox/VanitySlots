@@ -14,7 +14,7 @@ curseforge {
             artifacts.register("main") {
                 from(tasks.named("remapJar"))
 
-                displayName = "VanitySlots 2.0.0+1.21.1"
+                displayName = "VanitySlots (Fabric) 2.0.0+1.21.1"
 
                 changelog {
                     content = file('../CHANGELOG.md').text
@@ -34,11 +34,13 @@ curseforge {
 modrinth {
     token = env.MODRINTH_TOKEN.value
     projectId = "YTVu0oG8"
-    versionNumber = project.version.toString()
+    versionNumber = project.version.toString() + "+1.21.1"
+    versionName = 'VanitySlots (Fabric) ' + project.version.toString() + "+1.21.1"
     versionType = "release"
     uploadFile = jar
     gameVersions = ["1.21.1"]
     loaders = ["fabric"]
+    changelog = file("../CHANGELOG.md").text
     dependencies {
         // scope.type
         // The scope can be `required`, `optional`, `incompatible`, or `embedded`
