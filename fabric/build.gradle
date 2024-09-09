@@ -1,6 +1,53 @@
 plugins {
     id 'multiloader-loader'
     id 'fabric-loom'
+    id "io.github.themrmilchmann.curseforge-publish" version "0.6.1"
+    id "com.modrinth.minotaur" version "2.+"
+}
+
+curseforge {
+    apiToken = env.CURSEFORGE_TOKEN.value
+    publications {
+        register("curseForge") {
+            projectId = "570109"
+
+            artifacts.register("main") {
+                from(tasks.named("remapJar"))
+
+                displayName = "VanitySlots 2.0.0+1.21.1"
+
+                changelog {
+                    content = file('../CHANGELOG.md').text
+                }
+
+                relations {
+                    requiredDependency("fabric-api")
+                    requiredDependency("accessories")
+                    requiredDependency("forge-config-api-port-fabric")
+                    optionalDependency("modmenu")
+                }
+            }
+        }
+    }
+}
+
+modrinth {
+    token = env.MODRINTH_TOKEN.value
+    projectId = "YTVu0oG8"
+    versionNumber = project.version.toString()
+    versionType = "release"
+    uploadFile = jar
+    gameVersions = ["1.21.1"]
+    loaders = ["fabric"]
+    dependencies {
+        // scope.type
+        // The scope can be `required`, `optional`, `incompatible`, or `embedded`
+        // The type can either be `project` or `version`
+        required.project "fabric-api" // Creates a new required dependency on Fabric API
+        required.project "forge-config-api-port"
+        required.project "accessories"
+        optional.project "modmenu"
+    }
 }
 
 repositories {
@@ -8,6 +55,16 @@ repositories {
     maven { url 'https://maven.su5ed.dev/releases' }
     maven { url 'https://maven.fabricmc.net' }
     maven { url 'https://maven.shedaniel.me/' }
+
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+
+    maven {
+        name = "Terraformers"
+        url = "https://maven.terraformersmc.com/"
+    }
 }
 
 dependencies {
@@ -20,6 +77,10 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
     modImplementation("io.wispforest:accessories-fabric:${project.accessories_version}")
+
+    modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:21.1.0"
+
+    modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
 }
 
 loom {

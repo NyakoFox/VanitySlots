@@ -4,9 +4,14 @@
   "package": "gay.nyako.vanityslots.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_18",
-  "mixins": [],
+  "mixins": [
+    "PiglinAiMixin",
+    "PlayerMixin"
+  ],
   "client": [
-    "MixinMinecraft"
+    "CustomHeadLayerMixin",
+    "GuiMixin",
+    "HumanoidArmorLayerMixin"
   ],
   "server": [],
   "injectors": {

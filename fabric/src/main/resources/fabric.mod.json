@@ -17,6 +17,9 @@
     "entrypoints": {
         "main": [
             "gay.nyako.vanityslots.VanitySlotsMod"
+        ],
+        "client": [
+            "gay.nyako.vanityslots.VanitySlotsClientMod"
         ]
     },
     "mixins": [

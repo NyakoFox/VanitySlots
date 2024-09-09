@@ -21,6 +21,11 @@ repositories {
     maven { url 'https://maven.su5ed.dev/releases' }
     maven { url 'https://maven.fabricmc.net' }
     maven { url 'https://maven.shedaniel.me/' }
+
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
 }
 
 dependencies {
@@ -30,6 +35,8 @@ dependencies {
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
 
     compileOnly("io.wispforest:accessories-common:${project.accessories_version}-mojmap")
+
+    compileOnly "fuzs.forgeconfigapiport:forgeconfigapiport-common-neoforgeapi:21.1.0"
 }
 
 configurations {

@@ -1,0 +1,10 @@
+{
+  "order": 999,
+  "slots": [
+    "vanity_hat",
+    "vanity_shirt",
+    "vanity_pants",
+    "vanity_shoes"
+  ],
+  "icon": "vanityslots:gui/group/vanity"
+}

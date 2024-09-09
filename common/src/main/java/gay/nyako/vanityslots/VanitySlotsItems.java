@@ -3,7 +3,6 @@ package gay.nyako.vanityslots;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -27,7 +26,7 @@ public class VanitySlotsItems {
             ),
             15,
             SoundEvents.ARMOR_EQUIP_LEATHER,
-            () -> Ingredient.of(Items.GLOWSTONE_DUST),
+            () -> Ingredient.of(Items.LEATHER),
             0.0F,
             0.0F,
             false

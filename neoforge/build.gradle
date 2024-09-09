@@ -1,6 +1,44 @@
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev'
+    id "io.github.themrmilchmann.curseforge-publish" version "0.6.1"
+    id "com.modrinth.minotaur" version "2.+"
+}
+
+curseforge {
+    apiToken = env.CURSEFORGE_TOKEN.value
+    publications {
+        register("curseForge") {
+            projectId = "570109"
+
+            artifacts.register("main") {
+                from(tasks.named("jar"))
+
+                displayName = "VanitySlots " + project.version.toString() + "+1.21.1"
+
+                changelog {
+                    content = file('../CHANGELOG.md').text
+                }
+
+                relations {
+                    requiredDependency("accessories")
+                }
+            }
+        }
+    }
+}
+
+modrinth {
+    token = env.MODRINTH_TOKEN.value
+    projectId = "YTVu0oG8"
+    versionNumber = project.version.toString()
+    versionType = "release"
+    uploadFile = jar
+    gameVersions = ["1.21.1"]
+    loaders = ["neoforge"]
+    dependencies {
+        required.project "accessories"
+    }
 }
 
 repositories {
@@ -8,10 +46,17 @@ repositories {
     maven { url 'https://maven.su5ed.dev/releases' }
     maven { url 'https://maven.fabricmc.net' }
     maven { url 'https://maven.shedaniel.me/' }
+
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
 }
 
 dependencies {
     implementation("io.wispforest:accessories-neoforge:${project.accessories_version}")
+
+    //runtimeOnly "fuzs.forgeconfigscreens:forgeconfigscreens-forge:8.0.2"
 }
 
 neoForge {

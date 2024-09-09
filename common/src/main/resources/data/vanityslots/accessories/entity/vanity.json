@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "entities": [
+    "#accessories:defaulted_targets"
+  ],
+  "slots": [
+    "vanity_hat",
+    "vanity_shirt",
+    "vanity_pants",
+    "vanity_shoes"
+  ]
+}
