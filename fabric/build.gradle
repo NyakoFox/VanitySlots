@@ -8,12 +8,10 @@ plugins {
 curseforge {
     apiToken = env.CURSEFORGE_TOKEN.value
     publications {
-        register("curseForge") {
+        named("fabric") {
             projectId = "570109"
 
-            artifacts.register("main") {
-                from(tasks.named("remapJar"))
-
+            artifacts.named("main") {
                 displayName = "VanitySlots (Fabric) 2.0.0+1.21.1"
 
                 changelog {
@@ -37,7 +35,7 @@ modrinth {
     versionNumber = project.version.toString() + "+1.21.1"
     versionName = 'VanitySlots (Fabric) ' + project.version.toString() + "+1.21.1"
     versionType = "release"
-    uploadFile = jar
+    uploadFile = remapJar
     gameVersions = ["1.21.1"]
     loaders = ["fabric"]
     changelog = file("../CHANGELOG.md").text
