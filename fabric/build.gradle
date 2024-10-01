@@ -1,3 +1,5 @@
+import io.github.themrmilchmann.gradle.publish.curseforge.*
+
 plugins {
     id 'multiloader-loader'
     id 'fabric-loom'
@@ -12,9 +14,11 @@ curseforge {
             projectId = "570109"
 
             artifacts.named("main") {
-                displayName = "VanitySlots (Fabric) 2.0.0+1.21.1"
+                displayName = "${mod_name} (Fabric) ${version}+${minecraft_version}"
+                releaseType = ReleaseType.RELEASE
 
                 changelog {
+                    format = ChangelogFormat.MARKDOWN
                     content = file('../CHANGELOG.md').text
                 }
 
@@ -32,8 +36,8 @@ curseforge {
 modrinth {
     token = env.MODRINTH_TOKEN.value
     projectId = "YTVu0oG8"
-    versionNumber = project.version.toString() + "+1.21.1"
-    versionName = 'VanitySlots (Fabric) ' + project.version.toString() + "+1.21.1"
+    versionNumber = "${version}+${minecraft_version}"
+    versionName = "${mod_name} (Fabric) ${version}+${minecraft_version}"
     versionType = "release"
     uploadFile = remapJar
     gameVersions = ["1.21.1"]

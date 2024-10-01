@@ -1,3 +1,5 @@
+import io.github.themrmilchmann.gradle.publish.curseforge.*
+
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev'
@@ -14,9 +16,11 @@ curseforge {
             artifacts.register("main") {
                 from(tasks.named("jar"))
 
-                displayName = "VanitySlots (NeoForge) 2.0.0+1.21.1"
+                displayName = "${mod_name} (NeoForge) ${version}+${minecraft_version}"
+                releaseType = ReleaseType.RELEASE
 
                 changelog {
+                    format = ChangelogFormat.MARKDOWN
                     content = file('../CHANGELOG.md').text
                 }
 
@@ -31,8 +35,8 @@ curseforge {
 modrinth {
     token = env.MODRINTH_TOKEN.value
     projectId = "YTVu0oG8"
-    versionNumber = project.version.toString() + "+1.21.1"
-    versionName = 'VanitySlots (NeoForge) ' + project.version.toString() + "+1.21.1"
+    versionNumber = "${version}+${minecraft_version}"
+    versionName = "${mod_name} (NeoForge) ${version}+${minecraft_version}"
     versionType = "release"
     uploadFile = jar
     gameVersions = ["1.21.1"]
