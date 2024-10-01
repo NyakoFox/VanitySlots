@@ -1,5 +1,1 @@
-Rewrite the mod to be multiloader! From now on, releases are on both Fabric *and* NeoForge!
-
-## REMOVED OPTIONS:
-- Item blacklist
-- Disallow binding curse
+This update adds familiar armor to the creative inventory, and fixes a startup crash on NeoForge versions past 21.1.62.
